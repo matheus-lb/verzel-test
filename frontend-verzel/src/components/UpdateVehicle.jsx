@@ -28,7 +28,6 @@ export default function UpdateVehicle(props) {
     }
 
     useEffect(() => {
-        console.log(vehiclesData.id)
     }, [vehiclesData])
 
     return (

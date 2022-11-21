@@ -3,9 +3,18 @@ import {
     background,
     Box, Button, Text, Image, GridItem
 } from "@chakra-ui/react"
-import { BaseUrl } from "../constants/BaseURL";
+import { IconButton } from '@chakra-ui/react'
+import { PhoneIcon } from '@chakra-ui/icons'
+
+
+
 
 export default function VehicleCard(props) {
+
+    const linkWhatsApp = () => {
+
+    }
+
     useEffect(() => {
         console.log(props.photo)
     }, [])
@@ -14,7 +23,7 @@ export default function VehicleCard(props) {
         <Box
             sx={{
                 width: '180px',
-                height: '250px',
+                minHeight: '250px',
                 borderStyle: 'solid',
                 borderWidth: '1px',
                 borderColor: 'black',
@@ -32,10 +41,14 @@ export default function VehicleCard(props) {
                 sx={{
                     display: 'flex',
                     alignItems: 'center',
-                    justifyContent: 'center'
+                    justifyContent: 'center',
+                    fontSize:'20px',
+                    fontWeight:'bold'
+
                 }}
             >
                 <Text>{props.title}</Text>
+
             </Box>
 
             <Box
@@ -54,7 +67,7 @@ export default function VehicleCard(props) {
                 sx={{
                     display: 'flex',
                     alignItems: 'center',
-                    fontSize: '10px',
+                    fontSize: '16px',
                     alignItems: 'center',
                 }}
             >
@@ -68,10 +81,43 @@ export default function VehicleCard(props) {
                     alignItems: 'center',
                 }}
             >
-                <Text
-                    maxW={'120px'}
-                    margin={'10px auto'}
-                >{props.description}</Text>
+
+
+                <Box
+                    sx={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        flexDirection: 'column'
+                    }}
+                >
+                    <Box
+                    >
+                        <Text
+                            maxW={'120px'}
+                            margin={'10px auto'}
+                        >{props.description}
+                        </Text>
+                    </Box>
+                    <Box
+
+                    >
+                        <a
+                        href='https://api.whatsapp.com/send?phone=5524992810643&text=Ol%C3%A1%20gostaria%20de%20obter%20um%20or%C3%A7amento.'
+                        target='_blank'
+                        >
+                            <IconButton
+                                colorScheme='teal'
+                                aria-label='Call Segun'
+                                size='sm'
+                                backgroundColor={'green'}
+                                icon={<PhoneIcon />}
+                            />
+                        </a>
+
+                    </Box>
+                </Box>
+
+
             </Box>
 
         </Box>

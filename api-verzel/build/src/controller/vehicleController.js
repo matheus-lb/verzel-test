@@ -51,8 +51,8 @@ class vehiclesController {
         });
         this.getAllVehicles = (req, res) => __awaiter(this, void 0, void 0, function* () {
             try {
-                const vehicle = yield this.vehicleBusiness.getAllVehicles();
-                res.status(200).send({ vehicle });
+                const vehicles = yield this.vehicleBusiness.getAllVehicles();
+                res.status(200).send({ vehicles });
             }
             catch (error) {
                 res.status(error.statusCode || 500).send({
@@ -76,6 +76,7 @@ class vehiclesController {
                     description,
                     photo
                 };
+                console.log(newVehicle);
                 yield this.vehicleBusiness.updateVehicle(newVehicle);
                 res.status(201).send({ message: "Dados do Veículo Atualizados" });
             }
@@ -88,7 +89,7 @@ class vehiclesController {
         this.deleteVehicle = (req, res) => __awaiter(this, void 0, void 0, function* () {
             try {
                 const token = req.headers.authorization;
-                const { id } = req.body;
+                const id = req.query;
                 yield this.vehicleBusiness.deleteVehicle(id);
                 res.status(201).send({ message: "Cadastro Deletado" });
             }

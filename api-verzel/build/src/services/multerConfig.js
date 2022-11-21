@@ -15,7 +15,7 @@ const storange = multer_1.default.diskStorage({
     }
 });
 function fileFilter(req, file, cb) {
-    const extensaoImg = ['image/png', 'image/jpg', 'image/jpeg'].find(formatoaceito => formatoaceito === file.mimetype);
+    const extensaoImg = ['image/png', 'image/jpg', 'image/jpeg', 'image/jfif'].find(formatoaceito => formatoaceito === file.mimetype);
     if (extensaoImg) {
         return cb(null, true);
     }

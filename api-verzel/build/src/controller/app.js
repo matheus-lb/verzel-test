@@ -9,7 +9,8 @@ const cors_1 = __importDefault(require("cors"));
 exports.app = (0, express_1.default)();
 exports.app.use(express_1.default.json());
 exports.app.use((0, cors_1.default)());
-const server = exports.app.listen(process.env.PORT || 3004, () => {
+exports.app.use("/files", express_1.default.static("uploads"));
+const server = exports.app.listen(process.env.PORT || 3003, () => {
     if (server) {
         const address = server.address();
         console.log(`Server is running in http://localhost:${address.port}`);

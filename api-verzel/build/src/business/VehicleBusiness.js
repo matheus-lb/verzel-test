@@ -29,8 +29,8 @@ class VehicleBusiness {
             }
             const userTokenData = this.authenticator.getTokenData(token);
             const id = this.IdGenerator.generate();
-            const photo2 = `${process.env.BASE_URL_API}/files/${newVehicle.photo}`;
-            const vehicle = new Vehicle_1.Vehicle(id, name, brand, model, price, description, photo);
+            const photoLink = `${process.env.BASE_URL_API}/files/${newVehicle.photo}`;
+            const vehicle = new Vehicle_1.Vehicle(id, name, brand, model, price, description, photoLink);
             yield this.vehicleDatabase.insertVehicle(vehicle);
         });
         this.getVehicle = (search) => __awaiter(this, void 0, void 0, function* () {
@@ -63,10 +63,15 @@ class VehicleBusiness {
             yield this.vehicleDatabase.updateVehicle(id, vehicle);
         });
         this.deleteVehicle = (id) => __awaiter(this, void 0, void 0, function* () {
+            const verifyVehicle = yield this.vehicleDatabase.selectVehicle(id.id);
+            console.log(id.id);
             if (!id) {
                 throw new InvalidInputError_1.InvalidInputError("Identificador inválido");
             }
-            yield this.vehicleDatabase.deleteVehicle(id);
+            if (!verifyVehicle) {
+                throw new NotFoundError_1.NotFoundError('veiculo nao encontrado');
+            }
+            yield this.vehicleDatabase.deleteVehicle(id.id);
         });
     }
 }

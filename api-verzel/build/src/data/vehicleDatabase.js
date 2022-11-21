@@ -34,7 +34,7 @@ class VehicleDatabase extends BaseDatabase_1.BaseDatabase {
                     .select('*')
                     .from(VehicleDatabase.TABLE_NAME)
                     .orderBy('price', 'asc');
-                return result[0] && Vehicle_1.Vehicle.toVehicleModel(result[0]);
+                return result;
             }
             catch (error) {
                 console.log(error);
